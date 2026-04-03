@@ -1,0 +1,296 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Ocean esp",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Wait",
+   LoadingSubtitle = "A simple ESP by Galous scripts",
+   ShowText = "Esp Hub", -- for mobile users to unhide Rayfield, change if you'd like
+   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from emitting warnings when the script has a version mismatch with the interface.
+
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include Discord.gg/. E.g. Discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the Discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique, as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that the system will accept, can be RAW file links (pastebin, github, etc.) or simple strings ("hello", "key22")
+   }
+})
+
+
+-- Função que roda em segundo plano (não trava o resto do script)
+task.spawn(function()
+    while true do
+        Rayfield:Notify({
+           Title = "Reminder",
+           Content = "The script continues to run successfully!",
+           Duration = 4.0, -- Ajustei para 4s para não encavalar com o loop de 5s
+           Image = 4483362458,
+        })
+        
+        task.wait(120) -- Espera os 5 segundos para mandar a próxima
+    end
+end)
+
+
+local Tab = Window:CreateTab("Esp", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Esp")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Toggle = Tab:CreateToggle({
+   Name = "ESP Name",
+   CurrentValue = false,
+   Flag = "EspNameFlag", 
+   Callback = function(Value)
+       _G.EspNameActive = Value -- Define se está ligado ou desligado
+       
+       if _G.EspNameActive then
+           -- Inicia o loop do ESP
+           task.spawn(function()
+               while _G.EspNameActive do
+                   for _, player in pairs(Players:GetPlayers()) do
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+                           if not player.Character.Head:FindFirstChild("EspTag") then
+                               local bbg = Instance.new("BillboardGui", player.Character.Head)
+                               bbg.Name = "EspTag"
+                               bbg.AlwaysOnTop = true
+                               bbg.Size = UDim2.new(0, 100, 0, 50)
+                               bbg.StudsOffset = Vector3.new(0, 3, 0)
+
+                               local label = Instance.new("TextLabel", bbg)
+                               label.BackgroundTransparency = 1
+                               label.Size = UDim2.new(1, 0, 1, 0)
+                               label.Text = player.Name
+                               label.TextColor3 = Color3.new(1, 1, 1)
+                               label.TextStrokeTransparency = 0
+                               label.TextSize = 14
+                           end
+                       end
+                   end
+                   task.wait(1)
+               end
+           end)
+           
+           -- Opcional: Notifica que ligou
+           print("ESP Name: Ativado")
+       else
+           -- Limpa os nomes quando o Toggle é desligado
+           for _, player in pairs(Players:GetPlayers()) do
+               if player.Character and player.Character:FindFirstChild("Head") then
+                   local tag = player.Character.Head:FindFirstChild("EspTag")
+                   if tag then
+                       tag:Destroy()
+                   end
+               end
+           end
+           
+           print("ESP Name: Desativado")
+       end
+   end,
+})
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Toggle = Tab:CreateToggle({
+   Name = "ESP Hitbox",
+   CurrentValue = false,
+   Flag = "EspHitboxFlag", 
+   Callback = function(Value)
+       _G.EspHitboxActive = Value
+       
+       if _G.EspHitboxActive then
+           task.spawn(function()
+               while _G.EspHitboxActive do
+                   for _, player in pairs(Players:GetPlayers()) do
+                       -- Verifica se o jogador é válido e tem um HumanoidRootPart
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                           local char = player.Character
+                           local hrp = char.HumanoidRootPart
+                           
+                           -- Se o Adornment (a caixa) ainda não existir, cria um
+                           if not hrp:FindFirstChild("BoxHitbox") then
+                               local box = Instance.new("BoxHandleAdornment")
+                               box.Name = "BoxHitbox"
+                               box.Size = char:GetExtentsSize() + Vector3.new(0.5, 0.5, 0.5) -- Tamanho do personagem + margem
+                               box.AlwaysOnTop = true
+                               box.ZIndex = 5
+                               box.Transparency = 0.5
+                               box.Color3 = Color3.fromRGB(255, 0, 0) -- Cor Vermelha
+                               box.Adornee = hrp
+                               box.Parent = hrp
+                           end
+                       end
+                   end
+                   task.wait(1)
+               end
+           end)
+           print("ESP Hitbox: Ativado")
+       else
+           -- Remove as Hitboxes de todos os jogadores quando desativado
+           for _, player in pairs(Players:GetPlayers()) do
+               if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                   local box = player.Character.HumanoidRootPart:FindFirstChild("BoxHitbox")
+                   if box then
+                       box:Destroy()
+                   end
+               end
+           end
+           print("ESP Hitbox: Desativado")
+       end
+   end,
+})
+
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Toggle = Tab:CreateToggle({
+   Name = "ESP Distance",
+   CurrentValue = false,
+   Flag = "EspDistanceFlag", 
+   Callback = function(Value)
+       _G.EspDistanceActive = Value
+       
+       if _G.EspDistanceActive then
+           task.spawn(function()
+               while _G.EspDistanceActive do
+                   for _, player in pairs(Players:GetPlayers()) do
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+                           local head = player.Character.Head
+                           local tag = head:FindFirstChild("DistanceTag")
+                           
+                           -- Se não existir a tag, cria uma nova
+                           if not tag then
+                               local bbg = Instance.new("BillboardGui", head)
+                               bbg.Name = "DistanceTag"
+                               bbg.AlwaysOnTop = true
+                               bbg.Size = UDim2.new(0, 100, 0, 50)
+                               bbg.StudsOffset = Vector3.new(0, 4.5, 0) -- Fica acima do nome
+
+                               local label = Instance.new("TextLabel", bbg)
+                               label.Name = "DistLabel"
+                               label.BackgroundTransparency = 1
+                               label.Size = UDim2.new(1, 0, 1, 0)
+                               label.TextColor3 = Color3.fromRGB(0, 255, 150) -- Cor esverdeada/ciano
+                               label.TextStrokeTransparency = 0
+                               label.TextSize = 12
+                               tag = bbg
+                           end
+                           
+                           -- Atualiza a distância em tempo real
+                           local distance = (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")) and 
+                                            (player.Character:FindFirstChild("HumanoidRootPart")) and 
+                                            math.floor((LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude) or 0
+                           
+                           if tag:FindFirstChild("DistLabel") then
+                               tag.DistLabel.Text = "[" .. tostring(distance) .. " studs]"
+                           end
+                       end
+                   end
+                   task.wait(0.1) -- Atualização rápida para a distância não "congelar"
+               end
+           end)
+           print("ESP Distance: Ativado")
+       else
+           -- Limpa as tags de distância
+           for _, player in pairs(Players:GetPlayers()) do
+               if player.Character and player.Character:FindFirstChild("Head") then
+                   local tag = player.Character.Head:FindFirstChild("DistanceTag")
+                   if tag then
+                       tag:Destroy()
+                   end
+               end
+           end
+           print("ESP Distance: Desativado")
+       end
+   end,
+})
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = game:GetService("Workspace").CurrentCamera
+
+local Toggle = Tab:CreateToggle({
+   Name = "ESP Tracers",
+   CurrentValue = false,
+   Flag = "EspTracerFlag", 
+   Callback = function(Value)
+       _G.TracersActive = Value
+       
+       if _G.TracersActive then
+           task.spawn(function()
+               while _G.TracersActive do
+                   for _, player in pairs(Players:GetPlayers()) do
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                           local hrp = player.Character.HumanoidRootPart
+                           local vector, onScreen = Camera:WorldToViewportPoint(hrp.Position)
+                           
+                           -- Verifica se o jogador está na visão da câmera
+                           if onScreen then
+                               local tracer = hrp:FindFirstChild("TracerLine")
+                               if not tracer then
+                                   tracer = Instance.new("Frame")
+                                   tracer.Name = "TracerLine"
+                                   tracer.BackgroundColor3 = Color3.fromRGB(255, 255, 0) -- Amarelo
+                                   tracer.BorderSizePixel = 0
+                                   tracer.AnchorPoint = Vector2.new(0.5, 0.5)
+                                   tracer.Parent = hrp
+                               end
+                               
+                               -- Lógica de desenho da linha usando GUI (Simples e Leve)
+                               -- Nota: Para tracers perfeitos 2D em scripts externos usa-se a Drawing Lib, 
+                               -- mas via Instance (dentro do Roblox) usamos BillboardGuis ou Frames.
+                               -- Aqui usaremos uma BillboardGui para fixar a linha ao player.
+                               
+                               if not hrp:FindFirstChild("TracerGui") then
+                                   local bbg = Instance.new("BillboardGui", hrp)
+                                   bbg.Name = "TracerGui"
+                                   bbg.AlwaysOnTop = true
+                                   bbg.Size = UDim2.new(0, 1, 500, 0) -- Linha vertical longa
+                                   bbg.StudsOffset = Vector3.new(0, -250, 0) -- Centraliza a linha
+                                   
+                                   local line = Instance.new("Frame", bbg)
+                                   line.Size = UDim2.new(1, 0, 1, 0)
+                                   line.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+                                   line.BackgroundTransparency = 0.5
+                                   line.BorderSizePixel = 0
+                               end
+                           end
+                       end
+                   end
+                   task.wait(0.1)
+               end
+           end)
+       else
+           -- Limpeza dos Tracers
+           for _, player in pairs(Players:GetPlayers()) do
+               if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                   local gui = player.Character.HumanoidRootPart:FindFirstChild("TracerGui")
+                   if gui then gui:Destroy() end
+               end
+           end
+       end
+   end,
+})
