@@ -1,42 +1,45 @@
+return(function(A6P6b, ...)
+local HxcKQC = {"AuVG";"ijIzMP5j1lrp";"gpzZZPDkJsymTEWJd";"R5MVBCRx7";"jJhHndW2ED4gbxJiw";"0BXKa70VQve";"RpGqkpVVMJiv";"Q6MgfGcsQ";"u5QRwBEDed";"DFkmT1sYMNaza8N0W"}
+local O5jB1mLW = function(...)
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Ocean esp",
+   Name = loadstring(base64decode("T2NlYW4gZXNw"))(),
    Icon = 0,
-   LoadingTitle = "Wait",
-   LoadingSubtitle = "A simple ESP by Galous scripts",
-   ShowText = "Esp Hub",
-   Theme = "Ocean",
-   ToggleUIKeybind = "K",
+   LoadingTitle = loadstring(base64decode("V2FpdA=="))(),
+   LoadingSubtitle = loadstring(base64decode("QSBzaW1wbGUgRVNQIGJ5IEdhbG91cyBzY3JpcHRz"))(),
+   ShowText = loadstring(base64decode("RXNwIEh1Yg=="))(),
+   Theme = loadstring(base64decode("T2NlYW4="))(),
+   ToggleUIKeybind = loadstring(base64decode("Sw=="))(),
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false,
    ConfigurationSaving = {
       Enabled = false,
       FolderName = nil,
-      FileName = "Big Hub"
+      FileName = loadstring(base64decode("QmlnIEh1Yg=="))()
    },
    Discord = {
       Enabled = false,
-      Invite = "noinvitelink",
+      Invite = loadstring(base64decode("bm9pbnZpdGVsaW5r"))(),
       RememberJoins = true
    },
    KeySystem = false,
    KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided",
-      FileName = "Key",
+      Title = loadstring(base64decode("VW50aXRsZWQ="))(),
+      Subtitle = loadstring(base64decode("S2V5IFN5c3RlbQ=="))(),
+      Note = loadstring(base64decode("Tm8gbWV0aG9kIG9mIG9idGFpbmluZyB0aGUga2V5IGlzIHByb3ZpZGVk"))(),
+      FileName = loadstring(base64decode("S2V5"))(),
       SaveKey = true,
       GrabKeyFromSite = false,
-      Key = {"Hello"}
+      Key = {loadstring(base64decode("SGVsbG8="))()}
    }
 })
 
 task.spawn(function()
     while true do
         Rayfield:Notify({
-           Title = "Reminder",
-           Content = "The script continues to run successfully!",
+           Title = loadstring(base64decode("UmVtaW5kZXI="))(),
+           Content = loadstring(base64decode("VGhlIHNjcmlwdCBjb250aW51ZXMgdG8gcnVuIHN1Y2Nlc3NmdWxseSE="))(),
            Duration = 4.0,
            Image = 4483362458,
         })
@@ -44,30 +47,30 @@ task.spawn(function()
     end
 end)
 
-local Tab = Window:CreateTab("Esp", 4483362458)
-local Section = Tab:CreateSection("Esp")
-local Players = game:GetService("Players")
+local Tab = Window:CreateTab(loadstring(base64decode("RXNw"))(), 4483362458)
+local Section = Tab:CreateSection(loadstring(base64decode("RXNw"))())
+local Players = game:GetService(loadstring(base64decode("UGxheWVycw=="))())
 local LocalPlayer = Players.LocalPlayer
-local Camera = game:GetService("Workspace").CurrentCamera
+local Camera = game:GetService(loadstring(base64decode("V29ya3NwYWNl"))()).CurrentCamera
 
 local Toggle1 = Tab:CreateToggle({
-   Name = "ESP Name",
+   Name = loadstring(base64decode("RVNQIE5hbWU="))(),
    CurrentValue = false,
-   Flag = "EspNameFlag", 
+   Flag = loadstring(base64decode("RXNwTmFtZUZsYWc="))(), 
    Callback = function(Value)
        _G.EspNameActive = Value
        if _G.EspNameActive then
            task.spawn(function()
                while _G.EspNameActive do
                    for _, player in pairs(Players:GetPlayers()) do
-                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
-                           if not player.Character.Head:FindFirstChild("EspTag") then
-                               local bbg = Instance.new("BillboardGui", player.Character.Head)
-                               bbg.Name = "EspTag"
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild(loadstring(base64decode("SGVhZA=="))()) then
+                           if not player.Character.Head:FindFirstChild(loadstring(base64decode("RXNwVGFn"))()) then
+                               local bbg = Instance.new(loadstring(base64decode("QmlsbGJvYXJkR3Vp"))(), player.Character.Head)
+                               bbg.Name = loadstring(base64decode("RXNwVGFn"))()
                                bbg.AlwaysOnTop = true
                                bbg.Size = UDim2.new(0, 100, 0, 50)
                                bbg.StudsOffset = Vector3.new(0, 3, 0)
-                               local label = Instance.new("TextLabel", bbg)
+                               local label = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))(), bbg)
                                label.BackgroundTransparency = 1
                                label.Size = UDim2.new(1, 0, 1, 0)
                                label.Text = player.Name
@@ -82,8 +85,8 @@ local Toggle1 = Tab:CreateToggle({
            end)
        else
            for _, player in pairs(Players:GetPlayers()) do
-               if player.Character and player.Character:FindFirstChild("Head") then
-                   local tag = player.Character.Head:FindFirstChild("EspTag")
+               if player.Character and player.Character:FindFirstChild(loadstring(base64decode("SGVhZA=="))()) then
+                   local tag = player.Character.Head:FindFirstChild(loadstring(base64decode("RXNwVGFn"))())
                    if tag then tag:Destroy() end
                end
            end
@@ -92,21 +95,21 @@ local Toggle1 = Tab:CreateToggle({
 })
 
 local Toggle2 = Tab:CreateToggle({
-   Name = "ESP Hitbox",
+   Name = loadstring(base64decode("RVNQIEhpdGJveA=="))(),
    CurrentValue = false,
-   Flag = "EspHitboxFlag", 
+   Flag = loadstring(base64decode("RXNwSGl0Ym94RmxhZw=="))(), 
    Callback = function(Value)
        _G.EspHitboxActive = Value
        if _G.EspHitboxActive then
            task.spawn(function()
                while _G.EspHitboxActive do
                    for _, player in pairs(Players:GetPlayers()) do
-                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))()) then
                            local char = player.Character
                            local hrp = char.HumanoidRootPart
-                           if not hrp:FindFirstChild("BoxHitbox") then
-                               local box = Instance.new("BoxHandleAdornment")
-                               box.Name = "BoxHitbox"
+                           if not hrp:FindFirstChild(loadstring(base64decode("Qm94SGl0Ym94"))()) then
+                               local box = Instance.new(loadstring(base64decode("Qm94SGFuZGxlQWRvcm5tZW50"))())
+                               box.Name = loadstring(base64decode("Qm94SGl0Ym94"))()
                                box.Size = char:GetExtentsSize() + Vector3.new(0.5, 0.5, 0.5)
                                box.AlwaysOnTop = true
                                box.ZIndex = 5
@@ -122,8 +125,8 @@ local Toggle2 = Tab:CreateToggle({
            end)
        else
            for _, player in pairs(Players:GetPlayers()) do
-               if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                   local box = player.Character.HumanoidRootPart:FindFirstChild("BoxHitbox")
+               if player.Character and player.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))()) then
+                   local box = player.Character.HumanoidRootPart:FindFirstChild(loadstring(base64decode("Qm94SGl0Ym94"))())
                    if box then box:Destroy() end
                end
            end
@@ -132,26 +135,26 @@ local Toggle2 = Tab:CreateToggle({
 })
 
 local Toggle3 = Tab:CreateToggle({
-   Name = "ESP Distance",
+   Name = loadstring(base64decode("RVNQIERpc3RhbmNl"))(),
    CurrentValue = false,
-   Flag = "EspDistanceFlag", 
+   Flag = loadstring(base64decode("RXNwRGlzdGFuY2VGbGFn"))(), 
    Callback = function(Value)
        _G.EspDistanceActive = Value
        if _G.EspDistanceActive then
            task.spawn(function()
                while _G.EspDistanceActive do
                    for _, player in pairs(Players:GetPlayers()) do
-                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild(loadstring(base64decode("SGVhZA=="))()) then
                            local head = player.Character.Head
-                           local tag = head:FindFirstChild("DistanceTag")
+                           local tag = head:FindFirstChild(loadstring(base64decode("RGlzdGFuY2VUYWc="))())
                            if not tag then
-                               local bbg = Instance.new("BillboardGui", head)
-                               bbg.Name = "DistanceTag"
+                               local bbg = Instance.new(loadstring(base64decode("QmlsbGJvYXJkR3Vp"))(), head)
+                               bbg.Name = loadstring(base64decode("RGlzdGFuY2VUYWc="))()
                                bbg.AlwaysOnTop = true
                                bbg.Size = UDim2.new(0, 100, 0, 50)
                                bbg.StudsOffset = Vector3.new(0, 4.5, 0)
-                               local label = Instance.new("TextLabel", bbg)
-                               label.Name = "DistLabel"
+                               local label = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))(), bbg)
+                               label.Name = loadstring(base64decode("RGlzdExhYmVs"))()
                                label.BackgroundTransparency = 1
                                label.Size = UDim2.new(1, 0, 1, 0)
                                label.TextColor3 = Color3.fromRGB(0, 255, 150)
@@ -159,11 +162,11 @@ local Toggle3 = Tab:CreateToggle({
                                label.TextSize = 12
                                tag = bbg
                            end
-                           local distance = (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")) and 
-                                            (player.Character:FindFirstChild("HumanoidRootPart")) and 
+                           local distance = (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())) and 
+                                            (player.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())) and 
                                             math.floor((LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude) or 0
-                           if tag:FindFirstChild("DistLabel") then
-                               tag.DistLabel.Text = "[" .. tostring(distance) .. " studs]"
+                           if tag:FindFirstChild(loadstring(base64decode("RGlzdExhYmVs"))()) then
+                               tag.DistLabel.Text = loadstring(base64decode("Ww=="))() .. tostring(distance) .. loadstring(base64decode("IHN0dWRzXQ=="))()
                            end
                        end
                    end
@@ -172,8 +175,8 @@ local Toggle3 = Tab:CreateToggle({
            end)
        else
            for _, player in pairs(Players:GetPlayers()) do
-               if player.Character and player.Character:FindFirstChild("Head") then
-                   local tag = player.Character.Head:FindFirstChild("DistanceTag")
+               if player.Character and player.Character:FindFirstChild(loadstring(base64decode("SGVhZA=="))()) then
+                   local tag = player.Character.Head:FindFirstChild(loadstring(base64decode("RGlzdGFuY2VUYWc="))())
                    if tag then tag:Destroy() end
                end
            end
@@ -182,26 +185,26 @@ local Toggle3 = Tab:CreateToggle({
 })
 
 local Toggle4 = Tab:CreateToggle({
-   Name = "ESP Tracers",
+   Name = loadstring(base64decode("RVNQIFRyYWNlcnM="))(),
    CurrentValue = false,
-   Flag = "EspTracerFlag", 
+   Flag = loadstring(base64decode("RXNwVHJhY2VyRmxhZw=="))(), 
    Callback = function(Value)
        _G.TracersActive = Value
        if _G.TracersActive then
            task.spawn(function()
                while _G.TracersActive do
                    for _, player in pairs(Players:GetPlayers()) do
-                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                       if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))()) then
                            local hrp = player.Character.HumanoidRootPart
                            local vector, onScreen = Camera:WorldToViewportPoint(hrp.Position)
                            if onScreen then
-                               if not hrp:FindFirstChild("TracerGui") then
-                                   local bbg = Instance.new("BillboardGui", hrp)
-                                   bbg.Name = "TracerGui"
+                               if not hrp:FindFirstChild(loadstring(base64decode("VHJhY2VyR3Vp"))()) then
+                                   local bbg = Instance.new(loadstring(base64decode("QmlsbGJvYXJkR3Vp"))(), hrp)
+                                   bbg.Name = loadstring(base64decode("VHJhY2VyR3Vp"))()
                                    bbg.AlwaysOnTop = true
                                    bbg.Size = UDim2.new(0, 1, 500, 0)
                                    bbg.StudsOffset = Vector3.new(0, -250, 0)
-                                   local line = Instance.new("Frame", bbg)
+                                   local line = Instance.new(loadstring(base64decode("RnJhbWU="))(), bbg)
                                    line.Size = UDim2.new(1, 0, 1, 0)
                                    line.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
                                    line.BackgroundTransparency = 0.5
@@ -215,11 +218,14 @@ local Toggle4 = Tab:CreateToggle({
            end)
        else
            for _, player in pairs(Players:GetPlayers()) do
-               if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                   local gui = player.Character.HumanoidRootPart:FindFirstChild("TracerGui")
+               if player.Character and player.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))()) then
+                   local gui = player.Character.HumanoidRootPart:FindFirstChild(loadstring(base64decode("VHJhY2VyR3Vp"))())
                    if gui then gui:Destroy() end
                end
            end
        end
    end,
 })
+end
+4aJcKxA8(X9aFh)
+end)(...)
